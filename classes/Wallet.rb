@@ -28,4 +28,17 @@ class Wallet
     @outbox = [rent_cheque, transfer_pending]
   end
   
+  def write_cheque(params)
+    server_id = params['server_id']
+    cheque_amount = params['cheque_amount']
+    valid_from = params['valid_from']
+    valit_to = params['valit_to']
+    sender_account_id = params['sender_account_id']
+    sender_user_id = params['sender_user_id']
+    cheque_memo = params['cheque_memo']
+    recipient_user_id = params['recipient_user_id']
+    OT_API_WriteCheque(server_id, cheque_amount, valid_from, valit_to, sender_account_id, 
+              sender_user_id, cheque_memo, recipient_user_id)
+  end
+  
 end
