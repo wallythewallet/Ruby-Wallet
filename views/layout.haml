@@ -1,6 +1,17 @@
-!!!
 %html
 	%head
 		%title Wallet
-	%body		
-		= yield
+		%link{"rel" => "stylesheet", "href" => "css/style.css", "type" => "text/css"}
+	%body
+		%div#header
+			%h1 Welcome to Wallet
+
+			%p This is your wallet. There are many like it, but this one is yours.
+	
+		%div.mattblacktabs
+			%ul 
+				- @menu.each do |item|
+					%li
+						%a{"href" => item['link']} #{item['name']}
+		%div#content	
+			= yield

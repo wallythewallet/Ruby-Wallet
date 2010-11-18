@@ -1,32 +1,26 @@
-%h1 Welcome to Wallet
-
-%p This is your wallet. There are many like it, but this one is yours.
-
-%div#menu
-
-%div#content
-	%div#assets
-		%h2 Assets
-		%table
-			- @wallet.assets.each do |asset|
-				%tr
-					%td= "#{asset.name}"
-					%td= "#{asset.value}#{asset.shortsign}"
-	%div#inbox
-		%h2 Inbox
-		%table
-			- @wallet.inbox.each do |incoming|
-				%tr
-					%td= "#{incoming.type}"
-					%td= "#{incoming.message}"
-					%td= "#{incoming.value}"		
-					%td= "#{incoming.unit}"
-	%div#outbox
-		%h2 Outbox
-		%table
-			- @wallet.outbox.each do |outgoing|
-				%tr
-					%td= "#{outgoing.type}"
-					%td= "#{outgoing.message}"
-					%td= "#{outgoing.value}"		
-					%td= "#{outgoing.unit}"
+%div#assets
+	%h2 Assets
+	%table
+		- @wallet.assets.each do |asset|
+			%tr
+				%td= "#{asset.name}"
+				%td= "#{asset.value}#{asset.shortsign}"
+%div#inbox
+	%h2 Inbox
+	%table
+		- @wallet.inbox.each do |incoming|
+			%tr
+				%td= "#{incoming.type}"
+				%td= "#{incoming.message}"
+				%td= "#{incoming.value}"		
+				%td= "#{incoming.unit}"
+%div#outbox
+	%h2 Outbox
+	%table
+		- @wallet.outbox.each do |outgoing|
+			%tr
+				%td= "#{outgoing.type}"
+				%td= "#{outgoing.message}"
+				%td= "#{outgoing.value}"		
+				%td= "#{outgoing.unit}"
+				
