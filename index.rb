@@ -1,11 +1,11 @@
-# myapp.rb
+# index.rb
+require 'rubygems'
 require 'sinatra'
+require 'haml'
+require 'classes/Wallet.rb'
 
+# Show start page
 get '/' do
-  "Hello World! It is #{Time.now} at the server!"
+  @wallet = Wallet.new  
+  haml :index
 end
-
-get '/hello/:name' do
-  "Hello #{params[:name]}!"
-end
-
