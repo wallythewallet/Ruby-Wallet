@@ -1,0 +1,120 @@
+$background: #E8CEB3;
+$heading_color: #E6CAAC;
+$box_color: #6D878F;
+$menu_color: black;
+$menu_background_color: #D5A690;
+$menu_active_color: #698088;
+
+$box_height: 200px;
+$box_width: 300px;
+$margin: 5px;
+$padding: 3px;
+
+html{
+	margin: 0px;
+	padding: 0px;
+}
+
+body{
+	font-family: "Verdana", Sans-serif;
+	margin: 0px;
+	padding: 0px;
+	background-color: $background;
+}
+
+#header{
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	background-color: $box_color;
+	border-bottom: 1px solid black;	
+}
+
+#content{
+	
+}
+
+#assets{
+	float: left;
+	background-color: $box_color;
+	border: 1px solid black;
+	height: $box_height;
+	width: $box_width;
+	margin: $margin;
+	padding:$padding;
+}
+
+#inbox{
+	float: left;
+	background-color: $box_color;
+	border: 1px solid black;
+	height: $box_height;
+	width: $box_width;
+	margin: $margin;
+	padding:$padding;
+}
+
+#outbox{
+	float: left;
+	background-color: $box_color;
+	border: 1px solid black;
+	height: $box_height;
+	width: $box_width;
+	margin: $margin;
+	padding:$padding;
+}
+
+h1{
+	
+}
+
+h2{
+	
+}
+
+a{
+	color: blue;
+}
+
+.mattblacktabs{
+	width: 100%;
+	overflow: hidden;
+	border-bottom: 1px solid black;
+	background-color: $menu_background_color;
+}
+
+.mattblacktabs ul{
+	margin: 0;
+	padding: 0;
+	margin-left: $margin; 
+	font: bold 12px Verdana;
+	list-style-type: none;
+}
+
+.mattblacktabs li{
+	display: inline;
+	margin: 0;
+}
+
+.mattblacktabs li a{
+	float: left;
+	display: block;
+	text-decoration: none;
+	margin: 0;
+	padding: 7px 8px;
+	border-right: 1px solid black;
+	color: $menu_color;
+	background: $menu_background_color;
+}
+
+.mattblacktabs li:first-child a{
+	border-left: 1px solid black;
+}
+
+.mattblacktabs li a:visited{
+	color: $menu_color;
+}
+
+.mattblacktabs li a:hover, .mattblacktabs li.selected a{
+	background: $menu_active_color;
+}
