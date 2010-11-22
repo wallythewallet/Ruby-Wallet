@@ -2,10 +2,11 @@
 # index.rb
 
 require 'rubygems'
-require 'sinatra/base'
+require 'sinatra'
 require 'haml'
-require 'classes/Wallet.rb'
+require './classes/WalletController.rb'
 require 'OTAPI'
+
 
 module WalletModule
 
@@ -13,7 +14,7 @@ module WalletModule
 
     set :public => "public"
 
-    attr_accessor :menu, :wallet
+    attr_accessor :menu, :wallet_controller
 
     def initialize
       super
@@ -23,9 +24,9 @@ module WalletModule
         {"name" => "Transfers", "link" => "/transfers"},
         {"name" => "Cheques", "link" => "/cheques"},
         {"name" => "Cash", "link" => "/cash"}
-        ]
+      ]
         
-      @wallet = Wallet.new  
+      @wallet_controller = WalletController.new
     end
 
     get '/' do
@@ -41,7 +42,7 @@ module WalletModule
     end
 
     post '/cheques' do
-      @wallet.write_cheque(params)
+      @wallet_controller.write_cheque(params)
       redirect "/cheques"
     end
 

@@ -1,14 +1,14 @@
 %div#assets
 	%h2 Assets
 	%table
-		- @wallet.assets.each do |asset|
+		- @wallet_controller.assets.each do |asset|
 			%tr
 				%td= "#{asset.name}"
 				%td= "#{asset.value}#{asset.shortsign}"
 %div#inbox
 	%h2 Inbox
 	%table
-		- @wallet.inbox.each do |incoming|
+		- @wallet_controller.inbox.each do |incoming|
 			%tr
 				%td= "#{incoming.type}"
 				%td= "#{incoming.message}"
@@ -17,7 +17,7 @@
 %div#outbox
 	%h2 Outbox
 	%table
-		- @wallet.outbox.each do |outgoing|
+		- @wallet_controller.outbox.each do |outgoing|
 			%tr
 				%td= "#{outgoing.type}"
 				%td= "#{outgoing.message}"
