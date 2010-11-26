@@ -1,14 +1,14 @@
 # WalletController.rb
 
-require './Asset.rb'
-require 'Incoming.rb'
-require 'Outgoing.rb'
-require 'Wallet.rb'
-require 'OTAPI'
+require 'classes/Asset.rb'
+require 'classes/Incoming.rb'
+require 'classes/Outgoing.rb'
+require 'classes/Wallet.rb'
+require 'otapi'
 
 class WalletController
   
-  attr_accessor :assets, :inbox, :outbox
+  attr_accessor :assets, :inbox, :outbox, :wallets
   
   def initialize
     gold = Asset.new("Gold", "g", 100)
@@ -22,34 +22,47 @@ class WalletController
     franks_transfer = Incoming.new("Transfer", "Payback", "bc", "100")
     lisas_cheque = Incoming.new("Cheque", "Happy Birthday", "e", "50")
     
-    request_inbox
-    load_wallet
+    @wallets = init_wallet
+    request_inbox    
     @inbox = [new_cheque, franks_transfer, lisas_cheque]
     
     rent_cheque = Incoming.new("Cheque", "Rent for November", "$", "300")
     transfer_pending = Incoming.new("Transfer", "Hosting cost", "bc", "100")
         
-    @outbox = [rent_cheque, transfer_pending]    
+    @outbox = [rent_cheque, transfer_pending]  
+  end
+  
+  def init_wallet
+    path =  File.expand_path(File.dirname(__FILE__))
+    substring = "classes"
+    ss_start = path.index(substring)
+    path[ss_start, substring.length] = ""
+    path += "Open-Transactions/testwallet/data_folder"
+    Otapi.OT_API_Init path
+    load_wallets
   end
   
   def get_account_count
-    account_count = OTAPI.OT_API_GetAccountCount()    
+    account_count = Otapi.OT_API_GetAccountCount()
   end
   
-  def load_wallet
-
+  def load_wallets
+    Otapi.OT_API_LoadWallet "wallet.xml"    
     count = get_account_count
-    puts count
+
+    wallets = Array.new
+    wallet = Wallet.new
     
-    count.each do |i|
-      id = OT_API_GetAccountWallet_ID(i)
-      name = OT_API_GetAccountWallet_Name(i)
-      balance = OT_API_GetAccountWallet_Balance(i)
-      type = OT_API_GetAccountWallet_Type(i)
-      asset_type_id = OTAPI.OT_API_GetAccountWallet_AssetTypeID(i)
+    count.times do |i|
+      wallet.id = Otapi.OT_API_GetAccountWallet_ID(i)
+      wallet.name = Otapi.OT_API_GetAccountWallet_Name(wallet.id)
+      wallet.balance = Otapi.OT_API_GetAccountWallet_Balance(wallet.id)
+      wallet.type = Otapi.OT_API_GetAccountWallet_Type(wallet.id)
+      wallet.asset_type_id = Otapi.OT_API_GetAccountWallet_AssetTypeID(wallet.id)
+      wallets << wallet
     end
     
-    
+    wallets
   end
   
   def request_inbox
@@ -69,7 +82,7 @@ class WalletController
     sender_user_id = params['sender_user_id']
     cheque_memo = params['cheque_memo']
     recipient_user_id = params['recipient_user_id']
-    OT_API_WriteCheque(server_id, cheque_amount, valid_from, valit_to, sender_account_id, 
+    Otapi.OT_API_WriteCheque(server_id, cheque_amount, valid_from, valit_to, sender_account_id, 
               sender_user_id, cheque_memo, recipient_user_id)
   end
   

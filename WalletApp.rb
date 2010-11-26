@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
-# index.rb
+# WalletApp.rb
 
 require 'rubygems'
 require 'sinatra'
 require 'haml'
-require './classes/WalletController.rb'
-require 'OTAPI'
+require 'classes/WalletController.rb'
+require 'otapi'
 
 
 module WalletModule

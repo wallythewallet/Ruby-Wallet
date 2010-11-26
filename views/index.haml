@@ -1,10 +1,22 @@
 %div#assets
 	%h2 Assets
 	%table
-		- @wallet_controller.assets.each do |asset|
+		- @wallet_controller.wallets.each do |wallet|
 			%tr
-				%td= "#{asset.name}"
-				%td= "#{asset.value}#{asset.shortsign}"
+				%td= "ID"
+				%td= "#{wallet.id}"
+			%tr
+				%td= "Name"
+				%td= "#{wallet.name}"
+			%tr
+				%td= "Balance"	
+				%td= "#{wallet.balance}"
+			%tr			
+				%td= "Type"
+				%td= "#{wallet.type}"
+			%tr
+				%td= "Asset Type ID"	
+				%td= "#{wallet.asset_type_id}"
 %div#inbox
 	%h2 Inbox
 	%table
@@ -23,4 +35,3 @@
 				%td= "#{outgoing.message}"
 				%td= "#{outgoing.value}"		
 				%td= "#{outgoing.unit}"
-				
