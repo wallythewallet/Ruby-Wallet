@@ -1,0 +1,9 @@
+%h1 Assets
+%table
+	%tr
+		%th= "Name"
+		%th= "ID"
+	- @asset_controller.assets.each do |asset|
+		%tr
+			%td= "#{asset.name}"
+			%td= "#{asset.id}"

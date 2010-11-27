@@ -1,0 +1,9 @@
+%h1 Nyms
+%table
+	%tr
+		%th= "Name"
+		%th= "ID"
+	- @nym_controller.nyms.each do |nym|			
+		%tr
+			%td= "#{nym.name}"
+			%td= "#{nym.id}"

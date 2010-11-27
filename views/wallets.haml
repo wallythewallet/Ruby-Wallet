@@ -1,0 +1,13 @@
+%h1 Wallets
+%table
+	%tr
+		%th= "Name"		
+		%th= "Balance"	
+		%th= "Type"
+		%th= "Asset Type"							
+	- @wallet_controller.wallets.each do |wallet|			
+		%tr
+			%td= "#{wallet.name}"
+			%td= "#{wallet.balance}"
+			%td= "#{wallet.type}"
+			%td= "#{wallet.asset_type_name}"

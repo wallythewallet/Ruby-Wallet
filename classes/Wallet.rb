@@ -2,7 +2,7 @@
 
 class Wallet
   
-  attr_accessor :id, :name, :balance, :type, :asset_type_id
+  attr_accessor :id, :name, :balance, :type, :asset_type_id, :asset_type_name, :count
   
   
   

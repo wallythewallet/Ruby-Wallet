@@ -12,6 +12,6 @@
 			%ul 
 				- @menu.each do |item|
 					%li
-						%a{"href" => item['link']} #{item['name']}
+						%a{"href" => item[:link]} #{item[:name]}
 		%div#content	
 			= yield

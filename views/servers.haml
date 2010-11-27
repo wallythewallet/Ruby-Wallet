@@ -1,0 +1,9 @@
+%h1 Servers
+%table
+	%tr
+		%th= "Name"
+		%th= "ID"
+	- @server_controller.servers.each do |server|
+		%tr
+			%td= "#{server.name}"
+			%td= "#{server.id}"
