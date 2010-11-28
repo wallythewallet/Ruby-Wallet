@@ -85,10 +85,9 @@ module WalletModule
     end
     
     post '/inbox' do
-      puts params
-      server_id = ""
-      user_id = ""
-      account_id = ""
+      server_id = params[:server_id]
+      user_id = params[:user_id]
+      account_id = params[:account_id]
       @inbox_controller = InboxController.new server_id, user_id, account_id
       haml :inbox
     end
