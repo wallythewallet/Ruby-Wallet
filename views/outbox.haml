@@ -1,0 +1,8 @@
+%h1 Outbox
+%table
+	- @outbox_controller.outbox.each do |outgoing|
+		%tr
+			%td= "#{outgoing.type}"
+			%td= "#{outgoing.message}"
+			%td= "#{outgoing.value}"		
+			%td= "#{outgoing.unit}"

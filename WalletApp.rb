@@ -1,15 +1,15 @@
 #!/usr/bin/env ruby
-# WalletApp.rb
 
 require 'rubygems'
 require 'sinatra'
 require 'haml'
 require 'otapi'
-require 'classes/WalletController.rb'
+require 'classes/AccountController.rb'
 require 'classes/ServerController.rb'
 require 'classes/NymController.rb'
 require 'classes/AssetController.rb'
-
+require 'classes/InboxController.rb'
+require 'classes/OutboxController.rb'
 
 module WalletModule
 
@@ -17,7 +17,7 @@ module WalletModule
 
     set :public => "public"
 
-    attr_accessor :menu, :wallet_controller, :server_controller, :nym_controller, :asset_controller
+    attr_accessor :menu, :account_controller, :server_controller, :nym_controller, :asset_controller, :inbox_controller, :outbox_controller
 
     def initialize
       super
@@ -29,14 +29,18 @@ module WalletModule
         {:name => "Cash", :link => "/cash"},
         {:name => "Servers", :link => "/servers"},
         {:name => "Nyms", :link => "/nyms"},
-        {:name => "Wallets", :link => "/wallets"},
-        {:name => "Assets", :link => "/assets"}
+        {:name => "Accounts", :link => "/accounts"},
+        {:name => "Assets", :link => "/assets"},
+        {:name => "Inbox", :link => "/inbox"},
+        {:name => "Outbox", :link => "/outbox"}
       ]
         
-      @wallet_controller = WalletController.new
+      @account_controller = AccountController.new
       @server_controller = ServerController.new
       @nym_controller = NymController.new
       @asset_controller = AssetController.new
+      
+      
     end
 
     get '/' do
@@ -72,8 +76,25 @@ module WalletModule
       haml :assets
     end
     
-    get '/wallets' do
-      haml :wallets
+    get '/accounts' do
+      haml :accounts
+    end
+
+    get '/inbox' do
+      haml :select_inbox
+    end
+    
+    post '/inbox' do
+      puts params
+      server_id = ""
+      user_id = ""
+      account_id = ""
+      @inbox_controller = InboxController.new server_id, user_id, account_id
+      haml :inbox
+    end
+
+    get '/outbox' do
+      haml :outbox
     end
 
   end

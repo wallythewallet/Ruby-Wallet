@@ -1,0 +1,15 @@
+%h1 Accounts
+%table
+	%tr
+		%th= "Name"		
+		%th= "Balance"	
+		%th= "Type"
+		%th= "Asset Type"
+		%th= "ID"							
+	- @account_controller.accounts.each do |account|
+		%tr
+			%td= "#{account.name}"
+			%td= "#{account.balance}"
+			%td= "#{account.type}"
+			%td= "#{account.asset_type_name}"
+			%td= "#{account.id}"

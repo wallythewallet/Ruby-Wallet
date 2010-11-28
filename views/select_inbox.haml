@@ -1,0 +1,17 @@
+%h1 Select inbox to check
+%form{:method => "post", :action => "/inbox"}
+	%table
+		%tr
+			%td Server ID
+			%td 
+				%input{:type => "text", :name => "server_id"}
+		%tr
+			%td User ID
+			%td 
+				%input{:type => "text", :name => "user_id"}
+		%tr
+			%td Account ID
+			%td 
+				%input{:type => "text", :name => "account_id"}
+	%input{:type => "submit", :value => "Check inbox"}
+		
